@@ -12,9 +12,8 @@ const commandsForArguments = {
   '-d': actions.validate,
   '--dogrula': actions.validate,
   '-h': actions.help,
-  '-u': actions.generate,
-  '-t': actions.test,
-  '--test': actions.test,
+  '--help': actions.help,
+  '--yardim': actions.help,
 };
 
 const toRun = commandsForArguments[processArgs[0]];

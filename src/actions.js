@@ -1,58 +1,5 @@
-const helpers = require('./helpers.js');
-
-const validateIdNumber = (number) => {
-  const integerDigits = helpers.parseNumberIntoArray(number);
-
-  const randomDigits = integerDigits.slice(0, 9);
-  const validatingDigits = integerDigits.slice(9);
-  const firstTenDigits = integerDigits.slice(0, 10);
-
-  if (randomDigits[0] === 0) {
-    return false;
-  }
-
-  if (validatingDigits[1] % 2 !== 0) {
-    return false;
-  }
-
-  const evens = helpers.getEvens(randomDigits);
-  const odds = helpers.getOdds(randomDigits);
-
-  // prettier-ignore
-  const tenthDigit = ((evens * 7) - odds) % 10;
-
-  if (tenthDigit !== validatingDigits[0]) {
-    return false;
-  }
-
-  const eleventhDigit = firstTenDigits.reduce((total, digit) => total + digit) % 10;
-
-  if (eleventhDigit !== validatingDigits[1]) {
-    return false;
-  }
-
-  return true;
-};
-
-const generateIdNumber = () => {
-  const tenDigits = helpers.getRandomNumberInRange(100000000, 999999999);
-
-  const integerDigits = helpers.parseNumberIntoArray(tenDigits);
-
-  const evens = helpers.getEvens(integerDigits);
-  const odds = helpers.getOdds(integerDigits);
-
-  // prettier-ignore
-  const tenthDigit = ((evens * 7) - odds) % 10;
-
-  integerDigits.push(tenthDigit);
-
-  const eleventhDigit = integerDigits.reduce((total, digit) => total + digit) % 10;
-
-  integerDigits.push(eleventhDigit);
-
-  return integerDigits.join('');
-};
+const idNumber = require('./tc-id-number');
+const packageInfo = require('../package.json');
 
 exports.test = () => {
   console.log('testing');
@@ -60,14 +7,23 @@ exports.test = () => {
 };
 
 exports.help = () => {
-  console.log('Help message');
+  console.log(`
+    ${packageInfo.description}
+
+    Kullanım:
+
+    tc-kimlik                         Yeni bir TC Kimlik No üretir
+    tc-kimlik -d, --dogrula <numara>  TC Kimlik No geçerliliğini sorgular
+    tc-kimlik -h, --help, --yardim    Bu yardım mesajını gösterir
+    tc-kimlik -v, --versiyon          Versiyon bilgini gösterir
+  `);
   process.exit();
 };
 
 exports.validate = () => {
   const processArgs = process.argv.slice(2);
 
-  const result = validateIdNumber(processArgs[1]);
+  const result = idNumber.validate(processArgs[1]);
 
   if (result === false) {
     console.log(`${processArgs[1]} geçerli bir TC kimlik numarası değil.`);
@@ -79,6 +35,6 @@ exports.validate = () => {
 };
 
 exports.generate = () => {
-  console.log(generateIdNumber());
+  console.log(idNumber.generate());
   process.exit();
 };
