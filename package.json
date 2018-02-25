@@ -1,10 +1,11 @@
 {
   "name": "tc-kimlik-cli",
   "version": "1.0.0",
-  "description": "TC kimlik numarası üretmek ve doğrulamak için bir terminal uygulaması.",
+  "description": "TC kimlik numarası üretmek ve doğrulamak için bir terminal uygulamasıdır.",
   "main": "index.js",
   "scripts": {
-    "test": "tc-kimlik"
+    "test": "jest",
+    "test-watch": "jest --watch *.js"
   },
   "author": "Cem Ünalan",
   "license": "MIT",
@@ -14,6 +15,7 @@
   "devDependencies": {
     "eslint": "^4.18.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.9.0"
+    "eslint-plugin-import": "^2.9.0",
+    "jest": "^22.4.2"
   }
 }
