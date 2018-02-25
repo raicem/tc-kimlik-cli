@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
 const actions = require('./actions.js');
-const programInfo = require('../package.json');
 
-const arguments = process.argv.slice(2);
+const processArgs = process.argv.slice(2);
 
-if (arguments[0] === undefined) {
+if (processArgs[0] === undefined) {
   actions.generate();
 }
 
@@ -18,7 +17,7 @@ const commandsForArguments = {
   '--test': actions.test,
 };
 
-const toRun = commandsForArguments[arguments[0]];
+const toRun = commandsForArguments[processArgs[0]];
 
 if (toRun === undefined) {
   console.log('Lütfen geçerli bir komut giriniz');

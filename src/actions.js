@@ -1,6 +1,6 @@
 const helpers = require('./helpers.js');
 
-const validateIdNumber = number => {
+const validateIdNumber = (number) => {
   const integerDigits = helpers.parseNumberIntoArray(number);
 
   const randomDigits = integerDigits.slice(0, 9);
@@ -65,16 +65,16 @@ exports.help = () => {
 };
 
 exports.validate = () => {
-  const arguments = process.argv.slice(2);
+  const processArgs = process.argv.slice(2);
 
-  const result = validateIdNumber(arguments[1]);
+  const result = validateIdNumber(processArgs[1]);
 
   if (result === false) {
-    console.log(`${arguments[1]} geçerli bir TC kimlik numarası değil.`);
+    console.log(`${processArgs[1]} geçerli bir TC kimlik numarası değil.`);
     process.exit();
   }
 
-  console.log(`${arguments[1]} TC kimlik numarası geçerli.`);
+  console.log(`${processArgs[1]} TC kimlik numarası geçerli.`);
   process.exit();
 };
 
