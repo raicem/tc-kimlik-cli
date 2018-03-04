@@ -1,11 +1,6 @@
 const idNumber = require('./tc-id-number');
 const packageInfo = require('../package.json');
 
-exports.test = () => {
-  console.log('testing');
-  process.exit();
-};
-
 exports.help = () => {
   console.log(`
     ${packageInfo.description}
