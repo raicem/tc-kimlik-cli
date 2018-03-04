@@ -22,6 +22,14 @@ veya
 
 `tc-kimlik --dogrula <numara>`
 
+Yardım için
+
+`tc-kimlik --yardim`
+
+veya
+
+`tc-kimlik --h`
+
 Tüm seçenekler:
 
 ```
