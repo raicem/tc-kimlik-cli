@@ -1,7 +1,7 @@
 {
   "name": "tc-kimlik-cli",
   "version": "1.0.0",
-  "description": "TC kimlik numarası üretmek ve doğrulamak için bir terminal uygulamasıdır.",
+  "description": "TC kimlik numarası üretmek ve doğrulamak için bir terminal uygulaması.",
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
